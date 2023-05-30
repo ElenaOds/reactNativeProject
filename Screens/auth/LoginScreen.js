@@ -1,8 +1,19 @@
 import React, {useState } from "react";
-import { ImageBackground, View, Text, StyleSheet, TextInput, Keyboard, TouchableOpacity, TouchableWithoutFeedback, Dimensions, KeyboardAvoidingView } from "react-native";
-import Svg, { Path, Circle } from "react-native-svg";
+import { 
+  ImageBackground, 
+  View, 
+  Text, 
+  StyleSheet, 
+  TextInput, 
+  Keyboard, 
+  TouchableOpacity, 
+  TouchableWithoutFeedback, 
+  Dimensions, 
+  KeyboardAvoidingView,
+  Button 
+} from "react-native";
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   const [isKeyboardShown, setisKeyboardShown] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -97,9 +108,10 @@ return (
           onPress={()=>setisKeyboardShown(false)}>
           <Text style={styles.btnTitle}>Войти</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity>
-        <Text style={styles.text}>Нет экаунта? Зарегистрироваться</Text>     
+        <TouchableOpacity activeOpacity={0.7}
+            onPress={() => navigation.navigate('Register')}
+        >
+            <Text style={styles.text}>Нет экаунта? Зарегистрироваться</Text>
         </TouchableOpacity>
         </>
          )}
@@ -141,7 +153,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontFamily: 'Roboto-500',
+    fontFamily: 'Roboto-Medium',
     fontSize: 30,
     lineHeight: 35,
     textAlign:'center',
@@ -164,7 +176,7 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 16,
     color: '#212121',
-    fontFamily: 'Roboto-400',
+    fontFamily: 'Roboto-Regular',
     fontSize: 16,
     lineHeight: 19,
     color: '#212121',
@@ -184,7 +196,7 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 16,
     color: '#212121',
-    fontFamily: 'Roboto-400',
+    fontFamily: 'Roboto-Regular',
     fontSize: 16,
     lineHeight: 19,
     color: '#212121',
@@ -203,13 +215,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     lineHeight: 19,
-    fontFamily: 'Roboto-400',
+    fontFamily: 'Roboto-Regular',
   },
   text: {
     color: '#1B4371',
     fontSize: 16,
     lineHeight: 19,
-    fontFamily: 'Roboto-400',
+    fontFamily: 'Roboto-Regular',
   },
 
   avatar: {
@@ -229,7 +241,7 @@ const styles = StyleSheet.create({
   },
 
  passShow: {
-  fontFamily: 'Roboto-400',
+  fontFamily: 'Roboto-Regular',
   fontSize: 16,
   lineHeight: 19,
   color: '#1B4371',
