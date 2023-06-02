@@ -20,7 +20,7 @@ const initialState = {
 
 const RegisterScreen = ({navigation}) => {
   const [isKeyboardShown, setisKeyboardShown] = useState(false);
-  const [state, setstate] = useState(initialState);
+  const [state, setState] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [focused, setFocused] = useState({
     login: false,
@@ -35,8 +35,9 @@ const RegisterScreen = ({navigation}) => {
   };
 
   const submit = () => {
-    setstate(initialState);
+    setState(initialState);
   }
+
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -90,7 +91,7 @@ onPress={keyboardHide}
           style={focused.login ? [styles.input, { borderColor: '#FF6C00',  backgroundColor: '#FFF'}] : styles.input}
           value={state.login}
           onChangeText={(value) =>
-            setstate((prevState) => ({ ...prevState, login: value }))
+            setState((prevState) => ({ ...prevState, login: value }))
           }
           maxLength={20}
           onFocus={() => {
@@ -110,7 +111,7 @@ onPress={keyboardHide}
           style={focused.email ? [styles.input, { borderColor: '#FF6C00',  backgroundColor: '#FFF'}] : styles.input}
           value={state.email}
           onChangeText={(value) =>
-            setstate((prevState) => ({ ...prevState, email: value }))
+            setState((prevState) => ({ ...prevState, email: value }))
           }
           placeholder='Адреса електронної пошти'
           placeholderTextColor={'#BDBDBD'}
@@ -131,7 +132,7 @@ onPress={keyboardHide}
           secureTextEntry={showPassword}
           value={state.password}
           onChangeText={(value) =>
-            setstate((prevState) => ({ ...prevState, password: value }))
+            setState((prevState) => ({ ...prevState, password: value }))
           }
           maxLength={20}
           placeholder='Пароль'
@@ -190,7 +191,6 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'flex-end',
- 
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   },

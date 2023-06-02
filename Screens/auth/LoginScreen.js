@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { 
   ImageBackground, 
   View, 
@@ -18,7 +18,7 @@ const initialState = {
 
 const LoginScreen = ({navigation}) => {
   const [isKeyboardShown, setisKeyboardShown] = useState(false);
-  const [state, setstate] = useState(initialState);
+  const [state, setState] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [focused, setFocused] = useState({
     email: false,
@@ -31,7 +31,7 @@ const LoginScreen = ({navigation}) => {
   };
 
   const submit = () => {
-    setstate(initialState);
+    setState(initialState);
   }
 
   const togglePassword = () => {
@@ -73,7 +73,7 @@ return (
           style={focused.email ? [styles.input, { borderColor: '#FF6C00',  backgroundColor: '#FFF'}] : styles.input}
           value={state.email}
           onChangeText={(value) =>
-            setstate((prevState) => ({ ...prevState, email: value }))
+            setState((prevState) => ({ ...prevState, email: value }))
           }
           placeholder='Адреса електронної пошти'
           placeholderTextColor={'#BDBDBD'}
@@ -94,7 +94,7 @@ return (
           secureTextEntry={showPassword}
           value={state.password}
           onChangeText={(value) =>
-            setstate((prevState) => ({ ...prevState, password: value }))
+            setState((prevState) => ({ ...prevState, password: value }))
           }
           maxLength={20}
           placeholder='Пароль'
