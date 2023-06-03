@@ -7,6 +7,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     Image,
+    TouchableWithoutFeedback,
+    Keyboard
   } from "react-native";
 
 import { Camera } from "expo-camera";
@@ -23,7 +25,12 @@ const CreatePostsScreen = ({navigation}) => {
   const [location, setLocation] = useState(null);
   const [locationName, setLocationName] = useState('');
   const [name, setName] = useState('');
+  const [isKeyboardShown, setisKeyboardShown] = useState(false);
 
+  const keyboardHide = () => {
+    setisKeyboardShown(false);
+    Keyboard.dismiss();
+  };
 
   useEffect(() => {
     (async () => {
@@ -42,18 +49,17 @@ const CreatePostsScreen = ({navigation}) => {
       setPhoto(photo.uri);
     };
 
-
     const sendPhoto = async () => {
-      navigation.navigate('Posts', {photo, name, locationName});
+      navigation.navigate('Posts', {photo, name, locationName, location});
     };
 
     const back = () => {
       navigation.navigate('Posts');
     }
 
-  
 
     return (
+      <TouchableWithoutFeedback onPress={keyboardHide}>
       <View style={styles.container}>
 
         <View style={styles.header}>
@@ -90,6 +96,12 @@ const CreatePostsScreen = ({navigation}) => {
         onChangeText={(value) =>{            
           setName(value)
         }}
+        onFocus={() => {
+          setisKeyboardShown(true)}
+        }
+        onBlur={() => {
+          setisKeyboardShown(false)}
+        }
 
         />
 
@@ -102,22 +114,28 @@ const CreatePostsScreen = ({navigation}) => {
           onChangeText={(value) =>{            
           setLocationName(value)
         }}
+        onFocus={() => {
+          setisKeyboardShown(true)}
+        }
+        onBlur={() => {
+          setisKeyboardShown(false)}
+        }
           />
         </View>
-     
+        
         <TouchableOpacity onPress={sendPhoto} activeOpacity={0.7} 
         style={{...styles.btn, backgroundColor: photo ? '#FF6C00' : '#F6F6F6'}}>
           <Text style={{...styles.btnTitle, color: photo ? '#fff' : '#BDBDBD'}}>Опублікувати</Text>
         </TouchableOpacity>
-        
-        <View style={styles.trashWrapper}>
+      
+          <View style={styles.trashWrapper}>
         <TouchableOpacity activeOpacity={0.7} style={styles.trash}>
           <Trash/>
         </TouchableOpacity>
         </View>
       </View>
     </View>
-        
+  </TouchableWithoutFeedback>
     );
   };
     

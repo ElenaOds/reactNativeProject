@@ -20,11 +20,12 @@ const PostScreen = ({route, navigation}) => {
       setPosts(prevState => [...prevState, route.params]);
     }
   }, [route.params]);
-  console.log("posts", posts);
   
-  return (
-    <View style={styles.container}>
 
+
+  return (
+  
+    <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Публікації</Text>  
         <TouchableOpacity>
@@ -42,7 +43,6 @@ const PostScreen = ({route, navigation}) => {
         </View>
       <View style={styles.postsWrapper}>
         <FlatList 
-        
             data={posts}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => (
@@ -51,18 +51,23 @@ const PostScreen = ({route, navigation}) => {
                 <Text style={styles.postsName}>{item.name}</Text>
                 
                 <View style={styles.postsInfo}>
-                {/* <View style={styles.postsInfoWrapper}> */}
+              
                 <TouchableOpacity style={styles.postsInfoWrapper}
-                  onPress={()=>navigation.navigate("CommentsScreen")}
+                  onPress={() => navigation.navigate("Comments", {photo: item.photo})}
                 >
                 <Message />
                 <Text style={styles.postsMessage}>{item.comment ||'0'}</Text>
                 </TouchableOpacity>
-                {/* </View> */}
-                <View style={styles.postsInfoWrapper}> 
+                
+                <TouchableOpacity style={styles.postsInfoWrapper}
+                onPress={() => navigation.navigate("Map"
+                , { location: item.location, name: item.name }
+                )}
+                >
                   <LocationIcon/>
                 <Text style={styles.postsLocation}>{item.locationName}</Text>
-                </View>
+                </TouchableOpacity>
+                
                 </View>
               </View>
       

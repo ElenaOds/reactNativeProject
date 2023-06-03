@@ -139,9 +139,7 @@ return (
 
   </View> 
   </TouchableWithoutFeedback>
-
-
-      
+    
 );
 };
 
