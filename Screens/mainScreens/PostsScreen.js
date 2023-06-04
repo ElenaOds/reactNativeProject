@@ -7,28 +7,38 @@ import {
     FlatList,
     Image,
   } from "react-native";
+  import { useDispatch } from "react-redux";
+import { authSignOutUser } from '../../redux/auth/authOperations';
 
 import LogOut from '../../components/icons/LogOut';
 import LocationIcon from '../../components/icons/Location';
 import Message from '../../components/icons/Message';
 
+
 const PostScreen = ({route, navigation}) => {
+  const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
+
+
+  const signOut = () => {
+    dispatch(authSignOutUser());
+  };
 
   useEffect(() => {
     if(route.params) {
       setPosts(prevState => [...prevState, route.params]);
     }
   }, [route.params]);
+
+
   
-
-
+  
   return (
   
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Публікації</Text>  
-        <TouchableOpacity>
+        <TouchableOpacity onPress={signOut}>
           <LogOut/>
         </TouchableOpacity>
         </View>

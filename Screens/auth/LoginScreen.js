@@ -11,6 +11,9 @@ import {
   Dimensions
 } from "react-native";
 
+import { useDispatch } from "react-redux";
+import {authSignInUser} from '../../redux/auth/authOperations';
+
 const initialState = {
   email: "",
   password: "",
@@ -25,12 +28,15 @@ const LoginScreen = ({navigation}) => {
     password: false,
   });
 
+  const dispatch = useDispatch();
+
   const keyboardHide = () => {
     setisKeyboardShown(false);
     Keyboard.dismiss();
   };
 
   const submit = () => {
+    dispatch(authSignInUser(state));
     setState(initialState);
   }
 

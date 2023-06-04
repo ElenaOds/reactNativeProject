@@ -9,6 +9,7 @@ import {
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
+  ScrollView
 
 } from "react-native";
 import ArrowLeft from '../../components/icons/ArrowLeft';
@@ -55,6 +56,7 @@ import ArrowUp from '../../components/icons/ArrowUp';
           style={styles.image}
         />
       <View style={styles.wrapper}>
+        <ScrollView>
           <View style={styles.commentsList}>
             <View style={styles.commentsWrapper}>
               <View style={styles.avatar}>
@@ -67,7 +69,7 @@ import ArrowUp from '../../components/icons/ArrowUp';
           </View>
 
           </View>
-
+        </ScrollView>
         <View style={{...styles.inputWrapper, marginBottom: isKeyboardShown ? 150 : 0}} >
           <TextInput
             style={styles.input}                    
@@ -163,7 +165,6 @@ import ArrowUp from '../../components/icons/ArrowUp';
     commentsList: {
       display: 'flex',
       flexDirection: 'column',
-      marginBottom: 200,
     },
 
     commentsWrapper: {
@@ -171,6 +172,8 @@ import ArrowUp from '../../components/icons/ArrowUp';
       flexDirection: 'row',
       justifyContent: 'center',
       width: '100%',
+      marginBottom: 44,
+
     },
     avatar: {
       marginRight: 16,

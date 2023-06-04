@@ -13,11 +13,11 @@ import {
 
 import { Camera } from "expo-camera";
 import * as Location from "expo-location";
-
 import ArrowLeft from '../../components/icons/ArrowLeft';
 import Photo from '../../components/icons/Photo';
 import LocationIcon from '../../components/icons/Location';
 import Trash from '../../components/icons/Trash';
+
 
 const CreatePostsScreen = ({navigation}) => {
   const [camera, setCamera] = useState(null);
@@ -26,6 +26,7 @@ const CreatePostsScreen = ({navigation}) => {
   const [locationName, setLocationName] = useState('');
   const [name, setName] = useState('');
   const [isKeyboardShown, setisKeyboardShown] = useState(false);
+
 
   const keyboardHide = () => {
     setisKeyboardShown(false);
@@ -50,13 +51,12 @@ const CreatePostsScreen = ({navigation}) => {
     };
 
     const sendPhoto = async () => {
-      navigation.navigate('Posts', {photo, name, locationName, location});
+       navigation.navigate('Posts', {photo, name, locationName, location});
     };
 
     const back = () => {
       navigation.navigate('Posts');
     }
-
 
     return (
       <TouchableWithoutFeedback onPress={keyboardHide}>

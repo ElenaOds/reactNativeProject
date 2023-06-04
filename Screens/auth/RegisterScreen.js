@@ -11,6 +11,10 @@ import {
     Dimensions, 
 } from "react-native";
 import Svg, { Path, Circle } from "react-native-svg";
+import { useDispatch } from "react-redux";
+import {authRegisterUser} from '../../redux/auth/authOperations';
+
+
 
 const initialState = {
   login: "",
@@ -28,6 +32,7 @@ const RegisterScreen = ({navigation}) => {
     password: false,
   });
  
+  const dispatch = useDispatch();
  
   const keyboardHide = () => {
     setisKeyboardShown(false);
@@ -35,6 +40,7 @@ const RegisterScreen = ({navigation}) => {
   };
 
   const submit = () => {
+    dispatch(authRegisterUser(state));
     setState(initialState);
   }
 
